@@ -1,5 +1,5 @@
 import "./styles.css";
-import { Routes, Route, BrowserRouter } from "react-router-dom";
+import { Routes, Route, BrowserRouter } from "react-router-dom"; 
 
 import ResponsiveAppBar from "./views/ResponsiveAppBar";
 import AccueilView from "./views/AccueilView";
