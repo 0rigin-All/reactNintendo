@@ -13,6 +13,8 @@ import Tooltip from "@mui/material/Tooltip";
 import MenuItem from "@mui/material/MenuItem";
 import AdbIcon from "@mui/icons-material/Adb";
 import logoHeader from "../img/logoHeader.png";
+import { useState, useContext } from "react";
+import Auth from "../contexts/Auth";
 
 import { Link } from "react-router-dom";
 
@@ -35,7 +37,7 @@ function ResponsiveAppBar() {
   const handleCloseUserMenu = () => {
     setAnchorElUser(null);
   };
-
+const {isAuthentificated}=useContext(Auth);
   return (
     <AppBar position="fixed">
       <Container maxWidth="xl">
@@ -111,11 +113,13 @@ function ResponsiveAppBar() {
                   <Typography textAlign="center">Mon Panier</Typography>
                 </Link>
               </MenuItem>
+              {(isAuthentificated && (
               <MenuItem onClick={handleCloseNavMenu}>
                 <Link to={"/Disconnect"}>
                   <Typography textAlign="center">Déconnexion</Typography>
                 </Link>
               </MenuItem>
+              ))}
             </Menu>
           </Box>
           {/* ==========  icone android à gauche 
