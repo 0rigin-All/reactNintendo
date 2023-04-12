@@ -37,7 +37,7 @@ function ResponsiveAppBar() {
   const handleCloseUserMenu = () => {
     setAnchorElUser(null);
   };
-const {isAuthentificated}=useContext(Auth);
+  const { isAuthentificated } = useContext(Auth);
   return (
     <AppBar position="fixed">
       <Container maxWidth="xl">
@@ -88,11 +88,6 @@ const {isAuthentificated}=useContext(Auth);
                 </Link>
               </MenuItem>
               <MenuItem onClick={handleCloseNavMenu}>
-                <Link to={"/StandList"}>
-                  <Typography textAlign="center">Les Stands</Typography>
-                </Link>
-              </MenuItem>
-              <MenuItem onClick={handleCloseNavMenu}>
                 <Link to={"/ExhibitorList"}>
                   <Typography textAlign="center">Les Exposant</Typography>
                 </Link>
@@ -113,13 +108,13 @@ const {isAuthentificated}=useContext(Auth);
                   <Typography textAlign="center">Mon Panier</Typography>
                 </Link>
               </MenuItem>
-              {(isAuthentificated && (
-              <MenuItem onClick={handleCloseNavMenu}>
-                <Link to={"/Disconnect"}>
-                  <Typography textAlign="center">Déconnexion</Typography>
-                </Link>
-              </MenuItem>
-              ))}
+              {isAuthentificated && (
+                <MenuItem onClick={handleCloseNavMenu}>
+                  <Link to={"/Disconnect"}>
+                    <Typography textAlign="center">Déconnexion</Typography>
+                  </Link>
+                </MenuItem>
+              )}
             </Menu>
           </Box>
           {/* ==========  icone android à gauche 
