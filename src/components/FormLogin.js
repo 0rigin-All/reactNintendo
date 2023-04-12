@@ -18,30 +18,40 @@ export default function SignIn() {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
     ExhibitorCo(data);
-    console.log(JSON.stringify({email: data.get("email"), password: data.get("password")}));
+    console.log(
+      JSON.stringify({
+        email: data.get("email"),
+        password: data.get("password"),
+      })
+    );
   };
-const url = "https://cabrol.alwaysdata.net/api/saeExhibitorCo"
-    function ExhibitorCo(data) {
-        const fetchOptions = {
-          headers: {
-      'Accept': 'application/json',
-      'Content-Type': 'application/json'
-    },
-            method: "POST",
-            body: JSON.stringify({mail: data.get("email"), password: data.get("password")})
-        };
-        fetch(url, fetchOptions)
-            .then((response) => {
-                return response.json();
-            })
-            .then((dataJSON) => {
-                console.log(dataJSON);
-                if(dataJSON.status == 1){
-                  let Context = React.createContext({Logged: true});
-                }
-            })
-            .catch((error) => console.log(error));
-    }
+  const url = "https://cabrol.alwaysdata.net/api/saeExhibitorCo";
+  function ExhibitorCo(data) {
+    const fetchOptions = {
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+      },
+      method: "POST",
+      body: JSON.stringify({
+        mail: data.get("email"),
+        password: data.get("password"),
+      }),
+    };
+    fetch(url, fetchOptions)
+      .then((response) => {
+        return response.json();
+      })
+      .then((dataJSON) => {
+        console.log(dataJSON);
+        if (dataJSON.status == 1) {
+          const authValue = { isAuthentificated };
+          const Context = React.createContext(authValue);
+        }
+      })
+
+      .catch((error) => console.log(error));
+  }
   return (
     <Container component="main" maxWidth="xs">
       <Box
@@ -49,7 +59,7 @@ const url = "https://cabrol.alwaysdata.net/api/saeExhibitorCo"
           marginTop: 8,
           display: "flex",
           flexDirection: "column",
-          alignItems: "center"
+          alignItems: "center",
         }}
       >
         <Avatar sx={{ m: 1, bgcolor: "secondary.main" }}>
