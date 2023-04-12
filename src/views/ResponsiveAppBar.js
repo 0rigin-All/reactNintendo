@@ -12,13 +12,9 @@ import Button from "@mui/material/Button";
 import Tooltip from "@mui/material/Tooltip";
 import MenuItem from "@mui/material/MenuItem";
 import AdbIcon from "@mui/icons-material/Adb";
-import logoHeader from "../img/logoHeader.png"
-
-
+import logoHeader from "../img/logoHeader.png";
 
 import { Link } from "react-router-dom";
-
-
 
 function ResponsiveAppBar() {
   // === gestion menu de gauche (burger ou liste suivant la taille)
@@ -50,7 +46,7 @@ function ResponsiveAppBar() {
           {/* ==========  libellé à gauche qui
                   s'affiche uniquement si taille écran = md */}
           <Link to={"/"}>
-            <img src={logoHeader}/>
+            <img src={logoHeader} />
           </Link>
           {/* menu burger qui s'affiche uniquement si taille écran = md */}
           <Box sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}>
@@ -71,17 +67,17 @@ function ResponsiveAppBar() {
               anchorEl={anchorElNav} // position du menu
               anchorOrigin={{
                 vertical: "bottom",
-                horizontal: "left"
+                horizontal: "left",
               }}
               keepMounted
               transformOrigin={{
                 vertical: "top",
-                horizontal: "left"
+                horizontal: "left",
               }}
               open={Boolean(anchorElNav)} // affiché / caché en fonction du state
               onClose={handleCloseNavMenu} // fonction exécutée quand on ferme le menu
               sx={{
-                display: { xs: "block", md: "none" }
+                display: { xs: "block", md: "none" },
               }}
             >
               <MenuItem onClick={handleCloseNavMenu}>
@@ -109,14 +105,15 @@ function ResponsiveAppBar() {
                   <Typography textAlign="center">Billeterie</Typography>
                 </Link>
               </MenuItem>
-              <MenuItem onClick={handleCloseNavMenu}>
-                <Link to={"/ExhibitorSpace"}>
-                  <Typography textAlign="center">Escpace Exposant</Typography>
-                </Link>
-              </MenuItem>
+
               <MenuItem onClick={handleCloseNavMenu}>
                 <Link to={"/MyCart"}>
                   <Typography textAlign="center">Mon Panier</Typography>
+                </Link>
+              </MenuItem>
+              <MenuItem onClick={handleCloseNavMenu}>
+                <Link to={"/Disconnect"}>
+                  <Typography textAlign="center">Déconnexion</Typography>
                 </Link>
               </MenuItem>
             </Menu>
@@ -137,7 +134,7 @@ function ResponsiveAppBar() {
               fontWeight: 700,
               letterSpacing: ".3rem",
               color: "inherit",
-              textDecoration: "none"
+              textDecoration: "none",
             }}
           >
             Mon appli
@@ -205,7 +202,6 @@ function ResponsiveAppBar() {
           {/* ==========  menu profil user à droite 
                   toujours identique quelle que soit la taille de l'écran
           */}
-          
         </Toolbar>
       </Container>
     </AppBar>

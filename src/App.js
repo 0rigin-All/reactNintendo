@@ -1,5 +1,6 @@
 import "./styles.css";
-import { Routes, Route, BrowserRouter } from "react-router-dom"; 
+import { Routes, Route, BrowserRouter } from "react-router-dom";
+import { useState } from "react";
 
 import ResponsiveAppBar from "./views/ResponsiveAppBar";
 import AccueilView from "./views/AccueilView";
@@ -20,59 +21,74 @@ import EventListView from "./views/EventListView";
 import ModifProfilView from "./views/ModifProfilView";
 import ExhibitorSpaceConnectedView from "./views/ExhibitorSpaceConnectedView";
 import ExhibitorSpaceView from "./views/ExhibitorSpaceView";
-import EventDetailView from "./views/EventDetailView"
+import EventDetailView from "./views/EventDetailView";
 import ExhibitorDetailView from "./views/ExhibitorDetailView";
 
 import Container from "@mui/material/Container";
 
-import { createTheme, ThemeProvider } from '@mui/material/styles';
-
-
-
+import { createTheme, ThemeProvider } from "@mui/material/styles";
+import { hasAuthentificated } from "./services/AuthApi";
+import Auth from "./contexts/Auth";
 const redTheme = createTheme({
   palette: {
     primary: {
       main: "#DC221E",
     },
-    secondary:{
+    secondary: {
       main: "#DC221E",
     },
   },
 });
 
 export default function App() {
+  const [isAuthentificated, setIsAuthentificated] = useState(
+    hasAuthentificated()
+  );
   return (
-    <div className="App">
-      <ThemeProvider theme={redTheme}>
-      <BrowserRouter>
-        <ResponsiveAppBar></ResponsiveAppBar>
-        <Container sx={{ py: 10, minHeight: 500 }} maxWidth="xl">
-          <Routes>
-            <Route path="/" element={<AccueilView />} />
-            <Route path="/produit" element={<ProduitView />} />
-            <Route path="/prix" element={<PrixView />} />
-            <Route path="/dispo" element={<DispoView />} />
-            <Route path="/Plan" element={<PlanView />} />
+    <Auth.Provider value={{ isAuthentificated }}>
+      <div className="App">
+        <ThemeProvider theme={redTheme}>
+          <BrowserRouter>
+            <ResponsiveAppBar></ResponsiveAppBar>
+            <Container sx={{ py: 10, minHeight: 500 }} maxWidth="xl">
+              <Routes>
+                <Route path="/" element={<AccueilView />} />
+                <Route path="/produit" element={<ProduitView />} />
+                <Route path="/prix" element={<PrixView />} />
+                <Route path="/dispo" element={<DispoView />} />
+                <Route path="/Plan" element={<PlanView />} />
 
-            <Route path="/ExhibitorSpace" element={<ExhibitorSpaceView />} />
-            <Route path="/ExhibitorList" element={<ExhibitorListView />} />
-            <Route path="/Exhibitor/:id" element={<ExhibitorDetailView />} />
-            <Route path="/EventList" element={<EventListView />} />
-            <Route path="/Event/:id" element={<EventDetailView />} />
-            <Route path="/ident" element={<IdentView />} />
-            <Route path="/profil" element={<ProfileView />} />
-            <Route path="/account" element={<AccountView />} />
-            <Route path="/dashboard" element={<DashboardView />} />
-            <Route path="/logout" element={<LogoutView />} />
-            <Route path="/TicketOffice" element={<TicketOfficeView />} />
-            
-            <Route path="/ExhibitorSpaceConnected" element={<ExhibitorSpaceConnectedView />} />
-            <Route path="/Exhibitor/ModifProfil/:id" element={<ModifProfilView />} />
-          </Routes>
-        </Container>
+                <Route
+                  path="/ExhibitorSpace"
+                  element={<ExhibitorSpaceView />}
+                />
+                <Route path="/ExhibitorList" element={<ExhibitorListView />} />
+                <Route
+                  path="/Exhibitor/:id"
+                  element={<ExhibitorDetailView />}
+                />
+                <Route path="/EventList" element={<EventListView />} />
+                <Route path="/Event/:id" element={<EventDetailView />} />
+                <Route path="/ident" element={<IdentView />} />
+                <Route path="/profil" element={<ProfileView />} />
+                <Route path="/account" element={<AccountView />} />
+                <Route path="/dashboard" element={<DashboardView />} />
+                <Route path="/logout" element={<LogoutView />} />
+                <Route path="/TicketOffice" element={<TicketOfficeView />} />
 
-      </BrowserRouter>
-      </ThemeProvider>
-    </div>
+                <Route
+                  path="/ExhibitorSpaceConnected"
+                  element={<ExhibitorSpaceConnectedView />}
+                />
+                <Route
+                  path="/Exhibitor/ModifProfil/:id"
+                  element={<ModifProfilView />}
+                />
+              </Routes>
+            </Container>
+          </BrowserRouter>
+        </ThemeProvider>
+      </div>
+    </Auth.Provider>
   );
 }
