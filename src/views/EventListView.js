@@ -11,7 +11,7 @@ export default function EventListView() {
     }
     return (
         <div>
-            <h2>Les Poulets</h2>
+            <h2>Les Events</h2>
             <h4>Filtrer par categorie</h4>
             <FormControl component="fieldset">
                 <FormGroup aria-label="position" row>
