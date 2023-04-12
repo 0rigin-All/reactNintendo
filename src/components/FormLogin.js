@@ -14,10 +14,6 @@ import Container from "@mui/material/Container";
 import { Link } from "react-router-dom";
 
 export default function SignIn() {
-  const [email, setEmail] = useState({
-    email: "",
-    password: "",
-  });
   const handleChange = ({ currentTarget }) => {
     console.log(currentTarget.value);
   };
